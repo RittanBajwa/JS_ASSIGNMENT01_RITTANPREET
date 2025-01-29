@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Assignment 1</title>
+</head>
+
+<body>
+    <script>
+        // Step 1: Ask the user for the number of courses they have finished
+        let numOfCourses = prompt("How many courses did you finish?", "0");
+        numOfCourses = parseInt(numOfCourses);
+
+        if (isNaN(numOfCourses) || numOfCourses <= 0) {
+            document.write("<p>Invalid Input! Please enter a valid number of courses.</p>");
+        } else {
+            // Step 2: Declare an empty array for course marks
+            let courseMarks = [];
+            let totalMarks = 0;
+
+            // Step 3: Use a loop to gather course marks
+            for (let i = 1; i <= numOfCourses; i++) {
+                let mark;
+                do {
+                    mark = parseFloat(prompt(`Enter your course mark for course ${i}`)); 
+                    if (isNaN(mark) || mark < 0 || mark > 100) {
+                        document.write("<p>Invalid Input! Marks must be between 0 and 100. Please try again.</p>");
+                    }
+                } while (isNaN(mark) || mark < 0 || mark > 100); // Continue asking until valid mark is entered
+
+                courseMarks.push(mark);  // Add the valid mark to the array
+                totalMarks += mark;      // Add the mark to the total
+            }
+
+            // Step 4: Display all course marks
+            document.write("<p>Your course marks are:</p>");
+            document.write("<ul>");
+            for (let i = 0; i < courseMarks.length; i++) {
+                document.write("<li>Course " + (i + 1) + ": " + courseMarks[i] + "</li>");
+            }
+            document.write("</ul>");
+
+            // Step 5: Calculate the average
+            let average = totalMarks / numOfCourses;
+            average = parseFloat(average.toFixed(2)); // Round to 2 decimal points
+
+            // Step 6: Display the average and grade
+            document.write("<p>Your final average is " + average + ".</p>");
+
+            if (average >= 90 && average <= 100) {
+                document.write("<p>Your grade is A+.</p>");
+            } else if (average >= 80 && average < 90) {
+                document.write("<p>Your grade is B.</p>");
+            } else if (average >= 70 && average < 80) {
+                document.write("<p>Your grade is C.</p>");
+            } else if (average >= 60 && average < 70) {
+                document.write("<p>Your grade is D.</p>");
+            } else if (average < 60) {
+                document.write("<p>Your grade is F.</p>");
+            }
+        }
+    </script>
+</body>
+
+</html>
